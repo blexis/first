@@ -28,9 +28,9 @@ jobs:
       # Backups previous fil
 
       # Runs a single command using the runners shell
-      - name: Copy 
-        run: ls -la
+      - name: Copy config
+        run: sudo cp -R ./sites-available/ /etc/nginx/
 
       # Validates nginx config
-      - name: Copy 
+      - name: Validate nginx config
         run: /usr/local/nginx/sbin/nginx -t
