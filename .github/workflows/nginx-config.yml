@@ -33,11 +33,17 @@ jobs:
         with:
           sparse-checkout: env-dev/sites
 
-      # Backups previous fil
+      # Backups previous config files
+      - name: Backup nginx config file
+        run: sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+
+      # Replaces config file with repos file
+      - name: Replace nginx file
+        run: sudo cp ./env-dev/nginx.conf /etc/nginx/nginx.conf
 
       # Runs a single command using the runners shell
-      - name: Copy config
-        run: sudo cp -R ./sites-available/ /etc/nginx/
+      - name: Copy sites config
+        run: sudo cp -R ./env-dev/sites/* /etc/nginx/sites-enabled/
 
       # Validates nginx config
       - name: Validate nginx config
