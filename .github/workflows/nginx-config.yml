@@ -9,12 +9,12 @@ on:
     branches:
       - master
     paths:
-      - 'sites-available/**'
+      - 'env-dev/sites/**'
   pull_request:
     branches:
       - master
     paths:
-      - 'sites-available/**'
+      - 'env-dev/sites/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +22,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  validates:
     # The type of runner that the job will run on
     runs-on: wsl
 
@@ -30,6 +30,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: env-dev/sites
 
       # Backups previous fil
 
