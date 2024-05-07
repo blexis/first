@@ -49,7 +49,7 @@ jobs:
 
       # Validates nginx config
       - name: Validate nginx config
-        run: nginx -t
+        run: sudo nginx -t
   # This workflow will reload nginx
   deploy:
     needs: validates
