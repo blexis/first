@@ -10,11 +10,13 @@ on:
       - master
     paths:
       - 'env-dev/sites/**'
+      - 'env-dev/nginx.conf'
   pull_request:
     branches:
       - master
     paths:
       - 'env-dev/sites/**'
+      - 'env-dev/nginx.conf'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,7 +33,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: env-dev/sites
+          sparse-checkout: env-dev
 
       # Backups previous config files
       - name: Backup nginx config file
