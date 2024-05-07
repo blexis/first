@@ -50,9 +50,19 @@ jobs:
       # Validates nginx config
       - name: Validate nginx config
         run: sudo nginx -t
+  cleans-failed:
+    needs: validates
+    if: ${{ failure() }}
+    runs-on: wsl
+    steps:
+      - name: Restores backup files
+        run: sudo cp /etc/nginx/nginx.conf.bak /etc/nginx/nginx.conf
+      - name: Deletes bak files
+        run: sudo rm /etc/nginx/nginx.conf.bak
   # This workflow will reload nginx
   deploy:
     needs: validates
+    if: ${{ success() }}
     runs-on: wsl
     steps:
       - name: Reloads nginx processes
