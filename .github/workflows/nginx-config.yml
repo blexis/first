@@ -49,4 +49,4 @@ jobs:
 
       # Validates nginx config
       - name: Validate nginx config
-        run: /usr/local/nginx/sbin/nginx -t
+        run: nginx -t
